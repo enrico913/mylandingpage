@@ -18,6 +18,10 @@
 <!-- SwiperJS for Testimonial Carousel -->
 <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
 </head>
 <body>
 
@@ -77,29 +81,36 @@
 
   <section class="testimonials">
   <div class="container">
-    <h3 data-aos="fade-up">What Our Clients Say</h3>
-    
+    <h3>What Our Clients Say</h3>
+
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <div class="testimonial-card">
-            <p>"This platform streamlined our entire workflow. Couldn't be happier!"</p>
+            <p>"This platform streamlined our workflow. Couldn't be happier!"</p>
             <h4>- Sarah, CEO of BrightTech</h4>
           </div>
         </div>
         <div class="swiper-slide">
           <div class="testimonial-card">
-            <p>"Intuitive design, powerful tools, and rock-solid support."</p>
+            <p>"Super intuitive, clean, and fast."</p>
             <h4>- Dimas, Startup Founder</h4>
           </div>
         </div>
         <div class="swiper-slide">
           <div class="testimonial-card">
-            <p>"The best investment we've made in our business growth this year."</p>
+            <p>"The best investment we've made for our brand."</p>
             <h4>- Lina, Marketing Lead</h4>
           </div>
         </div>
       </div>
+
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
 
       <!-- Pagination Dots -->
       <div class="swiper-pagination"></div>
@@ -162,41 +173,45 @@
     </div>
   </footer>
 <script>
-  
   AOS.init();
-  
-  const swiper = new Swiper('.swiper', {
+
+  const swiper = new Swiper(".mySwiper", {
     loop: true,
     autoplay: {
       delay: 4000,
+      disableOnInteraction: false,
     },
     pagination: {
-      el: '.swiper-pagination',
+      el: ".swiper-pagination",
       clickable: true,
+      dynamicBullets: true, // makes it smarter
+    },
+    on: {
+      slideChange: function () {
+        // force update pagination on manual swipe
+        swiper.pagination.update();
+      },
     },
   });
 </script>
 
-<!-- Swiper and AOS JS -->
+</script>
+
+<!-- SwiperJS -->
 <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <script>
-  // Wait until everything is loaded
-  window.addEventListener('DOMContentLoaded', () => {
-    AOS.init();
-
-    const swiper = new Swiper('.mySwiper', {
-      loop: true,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
+  const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
   });
 
 // FAQ Accordion
